@@ -1,0 +1,37 @@
+{
+  "collapse-filter": false,
+  "search": "-path:_system -path:_review -path:docs -path:README -path:CLAUDE -path:CONTRIBUTING -path:LICENSE -path:免責聲明",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:主題地圖",
+      "color": {
+        "a": 1,
+        "rgb": 16761095
+      }
+    },
+    {
+      "query": "path:MOC",
+      "color": {
+        "a": 1,
+        "rgb": 16747520
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.518713248970312,
+  "repelStrength": 10,
+  "linkStrength": 1,
+  "linkDistance": 250,
+  "scale": 1.0072260674760096,
+  "close": true
+}
