@@ -40,10 +40,20 @@ When running `note-linker` on an existing note, it must check for the three MOC-
 - **Filename = topic name**, no volume/number suffix (volume goes in frontmatter). One concept = one file; relate subtopics via `## sections` or links, never duplicates.
 - **Links** use bare topic names `[[主題]]` (e.g. `[[向量]]`) — **never a `科目-` prefix**. Filenames carry no subject, so a prefixed link like `[[數學-向量]]` fails to resolve and breaks the graph. Use `[[科目/主題]]` only to disambiguate same-named topics across subjects. Link only when reading A genuinely requires B.
 - **Template** (`_system/templates/主題筆記模板.md`) — section order and emoji headings are fixed and must stay parseable by `note-checker`. 💡「為什麼要學？（Start with Why）」comes first, right after the title.
-- **Mermaid**: node text containing Chinese, brackets, or punctuation **must be wrapped in `"..."`** or Obsidian won't render it. Copy draft Mermaid verbatim; never invent a diagram the draft didn't include.
+- **Mermaid — flowchart**: node labels containing Chinese, brackets, or punctuation must use `ID["label"]` syntax (bracket + quote). Example: `A["矩陣乘法（AB≠BA）"]`. **Mermaid — mindmap**: child nodes use **plain text only** (indentation + text, no brackets, no quotes). Bare `"text"` (quote-only, no bracket) is wrong for mindmap — it renders as `&quot;text&quot;`. Root node uses `root["label"]`. For formula nodes that can't be expressed as plain text, `ID["formula"]` (with an explicit node ID prefix, e.g. `L1["aᵐ × aⁿ = aᵐ⁺ⁿ"]`) is valid — only bare `"text"` without an ID prefix causes the entity-escaping bug. Never use U+2212 `−` in any Mermaid node; use ASCII `-` instead. Copy draft Mermaid verbatim; never invent a diagram the draft didn't include.
 - **Self-test** requires ≥3 questions; if the draft lacks them, mark `待補` — don't fabricate answers.
 - Each subject directory has a `<subject>MOC.md` (subject entry map); `_index/主題地圖.md` is the whole-library entry point.
 
 ## Frontmatter checklist fields
 
 `note-writer` sets `檢查狀態: 待檢查` and leaves `信心度` blank. `note-checker` updates them to `已檢查`/`待人工複核` and `高/中/低`, working through `_system/規範/內容檢查清單.md` (hard facts → analogies → 課綱/exam → structure → typos → Mermaid).
+
+## Compact Instructions
+
+When compacting this conversation, preserve the following in the summary:
+- Which pipeline stage was in progress (tutor / note-writer / note-checker / note-linker) and for which 科目/主題
+- File paths of notes that were created or modified in this session
+- Any pending subagent calls (if the pipeline was interrupted mid-run)
+- MOC / index sync issues discovered and their fixes (e.g. MOC 三陷阱 repairs, step 5.5 主題群索引 updates)
+- Any `[[待建連結]]` list that note-linker identified but could not yet create
+- Any `待人工複核` items that still need human review
