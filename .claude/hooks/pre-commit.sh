@@ -27,7 +27,7 @@ for file in $(git diff --cached --name-only); do
     echo ""
     echo "⚠️  $file"
     echo "   內容尚未查證（檢查狀態: 待檢查）"
-    echo "   請在 Claude Code 裡執行："
+    echo "   請在 AI 工具（Antigravity / Claude Code）裡執行："
     echo "     請用 note-checker 校驗 $file"
     FAILED=1
   fi
@@ -38,7 +38,7 @@ for file in $(git diff --cached --name-only); do
     echo ""
     echo "⚠️  $file"
     echo "   尚未串連知識地圖（${moc} 找不到 [x] [[$basename]]）"
-    echo "   請在 Claude Code 裡執行："
+    echo "   請在 AI 工具（Antigravity / Claude Code）裡執行："
     echo "     請用 note-linker 串連 $file"
     FAILED=1
   fi
@@ -47,7 +47,7 @@ done
 if [ $FAILED -eq 1 ]; then
   echo ""
   echo "────────────────────────────────────────────────"
-  echo "❌ 提交暫停：請先在 Claude Code 完成以上 QA 步驟，再重新 git commit。"
+  echo "❌ 提交暫停：請先在 AI 工具（Antigravity / Claude Code）完成以上 QA 步驟，再重新 git commit。"
   echo "   （確定要略過品質檢查：git commit --no-verify，不建議）"
   echo "────────────────────────────────────────────────"
   exit 1

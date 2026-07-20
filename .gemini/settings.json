@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "search_web",
+      "read_url_content"
+    ]
+  }
+}
