@@ -1,0 +1,43 @@
+name: Convert WikiLinks & Publish
+
+# Triggers: push to main when .md files or the conversion tooling changes
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.md'
+      - 'scripts/convert_wikilinks.py'
+      - '.github/workflows/convert-and-publish.yml'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  convert-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Convert WikiLinks to standard Markdown links
+        run: python scripts/convert_wikilinks.py .
+
+      - name: Deploy to publish branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: publish
+          publish_dir: .
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'chore: convert WikiLinks for GitHub browsing'
+          exclude_assets: '.github'
