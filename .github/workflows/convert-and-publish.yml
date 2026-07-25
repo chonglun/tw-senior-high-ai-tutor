@@ -30,6 +30,16 @@ jobs:
       - name: Convert WikiLinks to standard Markdown links
         run: python scripts/convert_wikilinks.py .
 
+      - name: Copy MOCs to READMEs for GitHub UI
+        run: |
+          for dir in */ ; do
+            subject=$(basename "$dir")
+            if [ -f "${dir}${subject}MOC.md" ]; then
+              cp "${dir}${subject}MOC.md" "${dir}README.md"
+              echo "Copied ${subject}MOC.md to ${dir}README.md"
+            fi
+          done
+
       - name: Deploy to publish branch
         uses: peaceiris/actions-gh-pages@v4
         with:
