@@ -1,0 +1,23 @@
+# 本機個人設定（不應公開；共用設定請放 .claude/settings.json）
+.claude/settings.local.json
+
+# 作業系統 / 編輯器
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Obsidian：共用 app/appearance/core-plugins 與 graph.json（關聯圖預設篩選，隨專案發佈）；
+# 僅忽略真正屬於個人/暫存的工作區狀態
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# 暫存與紀錄
+*.log
+tmp/
+scratchpad/
+
+# 相依套件（如未來加入工具）
+node_modules/
